@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List{% endblock %}
+
+{% block body %}
+    <h1>Liste</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>nom</th>
+            <th>prenom</th>
+            <th>numero</th>
+            <th>Presence</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for present in presence.present %}
+            <tr>
+                <td><span class="fw-normal">{{ present.id }}</span></td>
+                <td><span class="fw-normal">{{ present.nom }}</span></td>
+                <td><span class="fw-normal">{{ present.prenom }}</span></td>
+                <td><span class="fw-normal">{{ present.numero }}</span></td>
+                {% if present.presence is same as(0) %}
+                    <td><span class="fw-normal text-success">Present</span></td>
+                {% endif %}
+                {% if present.presence is same as(1) %}
+                    <td><span class="fw-normal text-danger">Absent</span></td>
+                {% endif %}
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

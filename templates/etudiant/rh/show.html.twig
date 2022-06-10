@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiant{% endblock %}
+
+{% block body %}
+    <h1>Etudiant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td><span class="fw-normal">{{ etudiant.id }}</span></td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td><span class="fw-normal">{{ etudiant.nom }}</span></td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td><span class="fw-normal">{{ etudiant.prenom }}</span></td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td><span class="fw-normal">{{ etudiant.numero }}</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_etudiant_edit', {'id': etudiant.id}) }}"><button class="btn btn-danger me-2">Modifier</button></a>
+
+    {{ include('etudiant/rh/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matiere index{% endblock %}
+
+{% block body %}
+    <h1>Matiere index</h1>
+
+    <table class="table user-table table-hover align-items-center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for matiere in matieres %}
+            <tr>
+                <td><span class="fw-normal">{{ matiere.id }}</span></td>
+                <td><span class="fw-normal">{{ matiere.nom }}</span></td>
+                <td>
+                    <a href="{{ path('app_matiere_show', {'id': matiere.id}) }}"><button class="btn btn-info me-2">show</button></a>
+                    <a href="{{ path('app_matiere_edit', {'id': matiere.id}) }}"><button class="btn btn-danger me-2">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_matiere_new') }}"><button type="submit" class="btn btn-primary me-2">Ajouter</button></a>
+{% endblock %}

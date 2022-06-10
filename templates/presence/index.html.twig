@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <h1>Liste des presences</h1>
+    {% for presence in presences %}
+        <div class="table-responsive">
+        <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Envoyez par </th>
+            <th>date</th>
+            <th>Liste</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <a href="{{ path('app_users_show', {'id': presence.user.id}) }}"><button type="submit" class="btn btn-success me-2">{{ presence.user.nom }}</button></a>
+            </td>
+            <td><span class="fw-normal">{{ presence.date ? presence.date|date : '' }}</span></td>
+            <td>
+                <a href="{{ path('app_presence_show', {'id': presence.id}) }}"><button class="btn btn-primary me-2">Liste</button></a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+{% endblock %}

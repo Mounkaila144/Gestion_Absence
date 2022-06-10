@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_label(form.nom,'Nom') }}
+{{ form_widget(form.nom,{'attr':{'value':2  }}) }}
+    {{ form_label(form.prenom,'prenom') }}
+{{ form_widget(form.prenom,{'attr':{'placeholder':'prenom'  }}) }}
+    {{ form_label(form.numero,'numero') }}
+{{ form_widget(form.numero,{'attr':{ }}) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

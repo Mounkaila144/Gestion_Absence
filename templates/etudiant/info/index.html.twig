@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiant{% endblock %}
+
+{% block body %}
+    <h1>Etudiant</h1>
+    <a href="{{ path('app_presence_info', {'an':an})}}"><button class="btn btn-warning me-2">liste des presences</button></a>
+
+
+    <table class="table user-table table-hover align-items-center">
+            <thead>
+            <tr>
+                <th>Numero Etudiant</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etudiant in etudiants %}
+            <tr>
+                <td><span class="fw-normal">{{ etudiant.numero }}</span></td>
+                <td><span class="fw-normal">{{ etudiant.nom }}</span></td>
+                <td><span class="fw-normal">{{ etudiant.prenom }}</span></td>
+                <td>
+                    <a href="{{ path('app_etudiant_show', {'id': etudiant.id}) }}"><button class="btn btn-info me-2">show</button></a>
+                    <a href="{{ path('app_etudiant_edit', {'id': etudiant.id}) }}"><button class="btn btn-danger me-2">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('info_etudiant_new', {'an':an})}}"><button type="submit" class="btn btn-primary me-2">Ajouter</button></a>
+{% endblock %}

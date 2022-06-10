@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Filier index{% endblock %}
+
+{% block body %}
+    <h1>Filier index</h1>
+
+    <table class="table user-table table-hover align-items-center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for filier in filiers %}
+            <tr>
+                <td><span class="fw-normal">{{ filier.id }}</span></td>
+                <td><span class="fw-normal">{{ filier.nom }}</span></td>
+                <td>
+                    <a href="{{ path('app_filier_show', {'id': filier.id}) }}"><button class="btn btn-info me-2">show</button></a>
+                    <a href="{{ path('app_filier_edit', {'id': filier.id}) }}"><button class="btn btn-danger me-2">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_filier_new') }}"><button type="submit" class="btn btn-primary me-2">Ajouter</button></a>
+{% endblock %}

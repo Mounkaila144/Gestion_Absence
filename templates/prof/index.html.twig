@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block body %}
+    <h1>Etudiant index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Numero</th>
+            <th>Annee</th>
+            <th>presence</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for element in data %}
+            <tr>
+                <td><span class="fw-normal">{{ element.etudiant.id }}</span></td>
+                <td><span class="fw-normal">{{ element.etudiant.nom }}</span></td>
+                <td><span class="fw-normal">{{ element.etudiant.prenom }}</span></td>
+                <td><span class="fw-normal">{{ element.etudiant.numero }}</span></td>
+                <td><span class="fw-normal">{{ element.etudiant.annee }}</span></td>
+                {% if element.presence is same as(0) %}
+                    <td><span class="fw-normal text-success">Present</span></td>
+                {% endif %}
+                {% if element.presence is same as(1) %}
+                    <td><span class="fw-normal text-danger">Absent</span></td>
+                {% endif %}
+                {% if element.presence is same as(1) %}
+                    <td>
+                        <a href="{{ path('app_present', {'id': element.etudiant.id,'an': element.etudiant.id}) }}"><button class="btn btn-danger me-2">Present</button></a>
+                    </td>                {% endif %}
+                {% if element.presence is same as(0) %}
+                    <td>
+                        <a href="{{ path('app_present', {'id': element.etudiant.id,'an': element.etudiant.id}) }}"><button class="btn btn-indigo me-2">Present</button></a>
+                    </td>                {% endif %}
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_envoi_info',{'an':an}) }}"><button class="btn btn-primary me-2">Envoi</button></a>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users index{% endblock %}
+
+{% block body %}
+    <h1>Users index</h1>
+
+    <table class="table user-table table-hover align-items-center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>Username</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>IsVerified</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><span class="fw-normal">{{ user.id }}</span></td>
+                <td><span class="fw-normal">{{ user.email }}</span></td>
+                <td><span class="fw-normal">{{ user.roles ? user.roles|json_encode : '' }}</span></td>
+                <td><span class="fw-normal">{{ user.password }}</span></td>
+                <td><span class="fw-normal">{{ user.username }}</span></td>
+                <td><span class="fw-normal">{{ user.nom }}</span></td>
+                <td><span class="fw-normal">{{ user.telephone }}</span></td>
+                <td><span class="fw-normal">{{ user.isVerified ? 'Yes' : 'No' }}</span></td>
+                <td>
+                    <a href="{{ path('app_users_show', {'id': user.id}) }}"><button class="btn btn-info me-2">show</button></a>
+                    <a href="{{ path('app_users_edit', {'id': user.id}) }}"><button class="btn btn-danger me-2">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_users_new') }}"><button type="submit" class="btn btn-primary me-2">Ajouter</button></a>
+{% endblock %}
